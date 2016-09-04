@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cc "http://creativecommons.org/ns#" >
+    <!ENTITY dbp "http://dbpedia.org/resource/" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY dcterms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY vann "http://purl.org/vocab/vann/" >
+    <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY security-algorithms "http://purl.org/net/bel-epa/security-algorithms.owl#" >
+    <!ENTITY security-assurance "http://purl.org/net/bel-epa/security-assurance.owl#" >
+]>
+
+
+<rdf:RDF
+  xml:base="&security-algorithms;"
+  xmlns:cc= "&cc;"
+  xmlns:dbp= "&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dcterms = "&dcterms;"
+  xmlns:foaf= "&foaf;"
+  xmlns:owl = "&owl;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:skos = "&skos;"
+  xmlns:vann = "&vann;"
+  xmlns:vs = "&vs;"
+  xmlns:xsd = "&xsd;"
+  xmlns:security-assurance="&security-assurance;"
+  xmlns:security-algorithms="&security-algorithms;"
+  xmlns="&security-algorithms;"
+>
+
+    <owl:Ontology rdf:about="&security-algorithms;">
+        <owl:versionInfo rdf:datatype="&xsd;decimal">0.2</owl:versionInfo>
+        <dcterms:issued rdf:datatype="&xsd;date">2005-08-31</dcterms:issued>
+        <dcterms:modified rdf:datatype="&xsd;date">2014-01-24</dcterms:modified>
+        <dc:description xml:lang="en">An ontology to describe various cryptographic algorithms</dc:description>
+        <vs:term_status>Finished</vs:term_status>
+        <skos:historyNote xml:lang="en">Ontology extracted from the paper Security Ontology for Annotating Resources. [Kim et al. 2005] (See APPENDIX D. OWL Representations of the NRL Security Ontology) Security ontology to faciliate web service description and discovery.</skos:historyNote>
+        <dc:title xml:lang="en">Security Algorithms</dc:title>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/security-algos.owl#</vann:preferredNamespaceUri>
+        <vann:preferredNamespacePrefix>algo</vann:preferredNamespacePrefix>
+        <rdfs:comment> An ontology to describe various cryptographic algorithms</rdfs:comment>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dcterms:source rdf:resource="http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA437938"/>
+        <dc:contributor rdf:resource="mailto:gyrard@eurecom.fr"/>
+        <dcterms:creator rdf:resource="mailto:kim@itd.nrl.navy.mil"/>
+        <dcterms:creator rdf:resource="mailto:luo@itd.nrl.navy.mil"/>
+        <dcterms:creator rdf:resource="mailto:mkang@itd.nrl.navy.mil"/>
+    </owl:Ontology>
+    
+
+    <!--
+    Top Class Definition: Algorithm-->
+    <owl:Class rdf:about="&security-algorithms;Algorithm">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&security-algorithms;isNISTStandard"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description></dc:description>
+        <skos:prefLabel xml:lang="en">Algorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+
+
+
+    <!-- Subclass definitions of Algorithm Class; KeyExchangeAlgorithm, Encryption
+    Algorithms, SignatureAlgorithm, and ChecksumAlgorithm -->
+    <owl:Class rdf:about="&security-algorithms;KeyExchangeAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;Algorithm"/>
+        <dc:description>KeyExchangeAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">KeyExchangeAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-algorithms;EncryptionAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;Algorithm" />
+        <dc:description>EncryptionAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">EncryptionAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-algorithms;SignatureAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;Algorithm"/>
+        <dc:description>SignatureAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">SignatureAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-algorithms;ChecksumAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;Algorithm"/>
+        <dc:description>ChecksumAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">ChecksumAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclasses of Encryption Algorithm: SymmetricAlgorithm and AsymmetricAlgorithm -->
+    <owl:Class rdf:about="&security-algorithms;SymmetricAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;EncryptionAlgorithm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&security-algorithms;hasNSALevel"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dc:description>SymmetricAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">SymmetricAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-algorithms;AsymmetricAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;EncryptionAlgorithm"/>
+        <dc:description>AsymmetricAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">AsymmetricAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclasses of SignatureAlgorithm class: HashAlgorithm and MACAlgorithm -->
+    <owl:Class rdf:about="&security-algorithms;HashAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;SignatureAlgorithm"/>
+        <dc:description>Key dependent function; useful in providing user authentication without a secret key</dc:description>
+        <skos:prefLabel xml:lang="en">HashAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-algorithms;MACAlgorithm">
+        <rdfs:subClassOf rdf:resource="&security-algorithms;SignatureAlgorithm"/>
+        <dc:description>MACAlgorithm</dc:description>
+        <skos:prefLabel xml:lang="en">MACAlgorithm</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Property Definitions -->
+    <!-- Property Definition for the Algorithm Class -->
+
+    <owl:DatatypeProperty rdf:about="&security-algorithms;isNISTStandard">
+        <rdfs:domain rdf:resource="&security-algorithms;Algorithm"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+        <dc:description>NIST FIPS Standard</dc:description>
+        <skos:prefLabel xml:lang="en">isNISTStandard</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <!-- Property Defintions for the SymmetricAlgorithm class -->
+    <owl:DatatypeProperty rdf:about="&security-algorithms;keyLength">
+        <rdfs:domain rdf:resource="&security-algorithms;SymmetricAlgorithm"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+        <skos:prefLabel xml:lang="en">keyLength</skos:prefLabel>
+        <dc:description>keyLength</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&security-algorithms;modeOfOperation">
+        <rdfs:domain rdf:resource="&security-algorithms;SymmetricAlgorithm"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <dc:description>Can be CBC, ECB, OFB, CFB, or Counter</dc:description>
+        <skos:prefLabel xml:lang="en">modeOfOperation</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="&security-algorithms;hasNSALevel">
+        <rdfs:domain rdf:resource="&security-algorithms;SymmetricAlgorithm"/>
+        <rdfs:range rdf:resource="&security-assurance;NSA"/>
+        <dc:description>These can be Type1, Type 2, Type3, or Type4</dc:description>
+        <skos:prefLabel xml:lang="en">hasNSALevel</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-algorithms.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:ObjectProperty>
+
+    <!-- Instances -->
+    <KeyExchangeAlgorithm rdf:about="&security-algorithms;DiffieHellman"/>
+    <KeyExchangeAlgorithm rdf:about="&security-algorithms;KEA"/>
+    <KeyExchangeAlgorithm rdf:about="&security-algorithms;Oakley"/>
+
+    <ChecksumAlgorithm rdf:about="&security-algorithms;CRC-8"/>
+    <ChecksumAlgorithm rdf:about="&security-algorithms;CRC-16"/>
+    <ChecksumAlgorithm rdf:about="&security-algorithms;CRC-32"/>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;AES">
+        <hasNSALevel rdf:resource="&security-assurance;Type3"/>
+    </SymmetricAlgorithm>
+
+    <!-- Instances for the SymmetricAlgorithm class -->
+    <SymmetricAlgorithm rdf:about="&security-algorithms;RC4"/>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;Skipjack">
+        <hasNSALevel rdf:resource="&security-assurance;Type2"/>
+    </SymmetricAlgorithm>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;CRAYON">
+        <hasNSALevel rdf:resource="&security-assurance;Type1"/>
+    </SymmetricAlgorithm>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;TripleDES">
+        <hasNSALevel rdf:resource="&security-assurance;Type3"/>
+    </SymmetricAlgorithm>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;Blowfish"/>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;DES">
+        <keyLength rdf:datatype="&xsd;int">64</keyLength>
+        <hasNSALevel rdf:resource="&security-assurance;Type3"/>
+        <dc:description>Refers only to single DES</dc:description>
+    </SymmetricAlgorithm>
+
+    <SymmetricAlgorithm rdf:about="&security-algorithms;CAST"/>
+
+    <AsymmetricAlgorithm rdf:about="&security-algorithms;RSA"/>
+
+    <AsymmetricAlgorithm rdf:about="&security-algorithms;ECC">
+        <dc:description>Elliptic Curve Crypto</dc:description>
+    </AsymmetricAlgorithm>
+
+    <HashAlgorithm rdf:about="&security-algorithms;RIPE-MD"/>
+
+    <HashAlgorithm rdf:about="&security-algorithms;SHA-1"/>
+
+    <HashAlgorithm rdf:about="&security-algorithms;SHA-256">
+        <dc:description>usually used with AES</dc:description>
+    </HashAlgorithm>
+
+    <HashAlgorithm rdf:about="&security-algorithms;MD5"/>
+
+    <HashAlgorithm rdf:about="&security-algorithms;MD4"/>
+
+    <MACAlgorithm rdf:about="&security-algorithms;HMAC"/>
+
+    <MACAlgorithm rdf:about="&security-algorithms;CBC-MAC"/>
+
+</rdf:RDF>

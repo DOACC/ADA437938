@@ -1,0 +1,705 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf[
+
+  <!ENTITY cc "http://creativecommons.org/ns#" >
+  <!ENTITY dbp "http://dbpedia.org/resource/" >
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+  <!ENTITY dct "http://purl.org/dc/terms/" >
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+  <!ENTITY vann "http://purl.org/vocab/vann/" >
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY bibtex "http://www.csl.sri.com/users/denker/owl-sec/bibtex.owl#">
+  <!ENTITY bibtex-entries "http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#">
+  <!ENTITY cred "http://www.daml.org/services/owl-s/security/credential.owl#">
+  <!ENTITY dsig "http://www.w3.org/2000/09/xmldsig#">
+  <!ENTITY security "http://www.daml.org/services/owl-s/security/security.owl#">
+  <!ENTITY sec "http://purl.org/net/bel-epa/security.owl#">
+]>
+
+<rdf:RDF
+
+  xmlns:cc="&cc;"
+  xmlns:dbp="&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct="&dct;"
+  xmlns:foaf="&foaf;"
+  xmlns:owl ="&owl;"
+  xmlns:rdf ="&rdf;"
+  xmlns:rdfs ="&rdfs;"
+  xmlns:skos="&skos;"
+  xmlns:vann="&vann;"
+  xmlns:vs="&vs;"
+  xmlns:xsd ="&xsd;"
+  xmlns:cred ="&cred;"
+  xmlns:dsig ="&dsig;"
+  xmlns:bibtex ="&bibtex;"
+  xmlns:bibtex-entries ="&bibtex-entries;"
+  xmlns:sec ="&sec;"
+  xmlns:base ="&sec;"
+  xmlns ="&sec;"
+>
+
+    <owl:Ontology rdf:about="http://purl.org/net/bel-epa/security.owl#">
+        <vs:term_status>unstable</vs:term_status>
+        <dc:description>A security ontology that is intended to interface between various notations of security standards.</dc:description>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Security.</skos:prefLabel>
+        <dc:title>Security</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="http://melvincarvalho.com/#me"/>
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>sec</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/security.owl#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+   </owl:Ontology>
+
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          The goal of this ontology is to provide notations that
+          will allow to interface between the various standards for 
+          security and trust, many of which are based on XML. 
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Top Level Class
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <owl:Class rdf:about="&sec;SecurityMechanism">   
+      <skos:prefLabel xml:lang="en">SecurityMechanism</skos:prefLabel>
+      <dc:description xml:lang="en">Security mechanism.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Properties
+    -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+
+    <owl:ObjectProperty rdf:about="&sec;documentation">
+      <skos:prefLabel xml:lang="en">documentation</skos:prefLabel>
+      <dc:description xml:lang="en">documentation.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range rdf:resource="&bibtex;Bibtex_Entry"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&sec;syntax">
+      <skos:prefLabel xml:lang="en">syntax</skos:prefLabel>
+      <dc:description xml:lang="en">syntax.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range  rdf:resource="&sec;Syntax"/>
+    </owl:ObjectProperty>
+            
+    <owl:ObjectProperty rdf:about="&sec;relSecNotation">
+      <skos:prefLabel xml:lang="en">relSecNotation</skos:prefLabel>
+      <dc:description xml:lang="en">rel sec notation.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range rdf:resource="&sec;SecurityNotation"/>
+    </owl:ObjectProperty>
+         
+    <owl:ObjectProperty rdf:about="&sec;enc">
+      <skos:prefLabel xml:lang="en">enc</skos:prefLabel>
+      <dc:description xml:lang="en">encryption.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range rdf:resource="&sec;Encryption"/>
+    </owl:ObjectProperty>
+          
+    <owl:ObjectProperty rdf:about="&sec;sig">
+      <skos:prefLabel xml:lang="en">sig</skos:prefLabel>
+      <dc:description xml:lang="en">signature.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range rdf:resource="&sec;Signature"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&sec;reqCredential">
+      <skos:prefLabel xml:lang="en">reqCredential</skos:prefLabel>
+      <dc:description xml:lang="en">req credential.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:domain rdf:resource="&sec;SecurityMechanism"/>
+      <rdfs:range rdf:resource="&sec;ComposedCredential"/>
+    </owl:ObjectProperty>
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Classes (all subclasses of SecurityMechanism)
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+
+    <owl:Class rdf:about="&sec;Syntax">
+      <skos:prefLabel xml:lang="en">Syntax</skos:prefLabel>
+      <dc:description xml:lang="en">Syntax.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf rdf:resource="&sec;SecurityMechanism"/>  
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;SecurityNotation">
+      <skos:prefLabel xml:lang="en">SecurityNotation</skos:prefLabel>
+      <dc:description xml:lang="en">Security notation.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;SecurityMechanism"/> 
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;KeyFormat">
+      <skos:prefLabel xml:lang="en">KeyFormat</skos:prefLabel>
+      <dc:description xml:lang="en">Key format.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;SecurityMechanism"/> 
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;Encryption">
+      <skos:prefLabel xml:lang="en">Encryption</skos:prefLabel>
+      <dc:description xml:lang="en">Encryption.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;SecurityMechanism"/> 
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;Signature">
+      <skos:prefLabel xml:lang="en">Signature</skos:prefLabel>
+      <dc:description xml:lang="en">Signature.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;SecurityMechanism"/> 
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;Protocol">
+      <skos:prefLabel xml:lang="en">Protocol</skos:prefLabel>
+      <dc:description xml:lang="en">Protocol.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;SecurityMechanism"/> 
+    </owl:Class>
+     
+    <owl:Class rdf:about="&sec;DataTransferProtocol">
+      <skos:prefLabel xml:lang="en">DataTransferProtocol</skos:prefLabel>
+      <dc:description xml:lang="en">Data transfer protocol.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;Protocol"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;KeyProtocol">
+      <skos:prefLabel xml:lang="en">KeyProtocol</skos:prefLabel>
+      <dc:description xml:lang="en">Key protocol.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;Protocol"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;KeyRegistrationProt">
+      <skos:prefLabel xml:lang="en">KeyRegistrationProt</skos:prefLabel>
+      <dc:description xml:lang="en">Key registration protocol.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;KeyProtocol"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&sec;KeyInformationProt">
+      <skos:prefLabel xml:lang="en">KeyInformationProt</skos:prefLabel>
+      <dc:description xml:lang="en">Key information protocol.</dc:description>
+      <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security.owl#"/>
+      <vs:term_status>unstable</vs:term_status>
+      <rdfs:subClassOf  rdf:resource="&sec;KeyProtocol"/>
+    </owl:Class>
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Syntax
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+
+    <Syntax rdf:about="&sec;ASCII">   
+    </Syntax>
+
+    <Syntax rdf:about="&sec;DAMLOIL">   
+    </Syntax>
+
+    <Syntax rdf:about="&sec;OWL">   
+    </Syntax>
+     
+    <Syntax rdf:about="&sec;DER">   
+    </Syntax>
+     
+    <Syntax rdf:about="&sec;XML">   
+    </Syntax>
+
+    <Syntax rdf:about="&sec;Binary">   
+    </Syntax>
+
+    <Syntax rdf:about="&sec;Radix-64_ASCII_encoding">   
+    </Syntax>
+     
+    <Syntax rdf:about="&sec;ASN.1">   
+    </Syntax>
+     
+    <Syntax rdf:about="&sec;MIME">   
+    </Syntax>
+
+     
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Restriction classes that have specific syntax 
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <owl:Restriction rdf:about="&sec;ASCIISubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;ASCII"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;DAMLOILSubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;DAMLOIL"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;OWLSubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;OWL"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;DERSubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;DER"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;XMLSubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;XML"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;BinarySubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;Binary"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;Radix-64_ASCII_encodingSubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;Radix-64_ASCII_encoding"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;ASN.1SubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;ASN.1"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;MIMESubClass">
+      <owl:onProperty  rdf:resource="&sec;syntax"/>
+      <owl:hasValue  rdf:resource="&sec;MIME"/>
+    </owl:Restriction>
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: SecurityNotation
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+     
+    <SecurityNotation rdf:about="&sec;Authentication">   
+      <dc:description>Mechanism to decide whether a given credential (key, certificate, etc.) stands for an entity.</dc:description>
+    </SecurityNotation>
+     
+    <SecurityNotation rdf:about="&sec;Authorization">
+      <dc:description>Mechanism to decide whether an entity can use a resource.</dc:description>   
+    </SecurityNotation>
+     
+    <SecurityNotation rdf:about="&sec;AccessControl">
+      <dc:description>Mechanism to control access to a resourcrce.</dc:description>   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;DataIntegrity">
+      <dc:description>Data has not been inadvertently or deliberately altered.</dc:description>   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;Confidentiality">   
+      <dc:description>Data can only be read by designated entity. Data can not be read by everybody.</dc:description>
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;Privacy">
+      <dc:description>Personal information is not disclosed.</dc:description>
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;ExposureControl">
+      <dc:description>Mechanism to control delivery of data to recipient.</dc:description>   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;Anonymity">   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;Negotiation">   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;Policy">   
+    </SecurityNotation>
+     
+    <SecurityNotation rdf:about="&sec;PolicyLanguage">   
+    </SecurityNotation>
+
+    <SecurityNotation rdf:about="&sec;KeyDistribution">   
+    </SecurityNotation>
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Restriction classes that have specific 
+                     relSecurityNotations
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <owl:Restriction rdf:about="&sec;AuthenticationSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Authentication"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;AuthorizationSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Authorization"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;AccessControlSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;AccessControl"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;DataIntegritySubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;DataIntegrity"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;ConfidentialitySubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Confidentiality"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;PrivacySubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Privacy"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;ExposureControlSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;ExposureControl"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;AnonymitySubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Anonymity"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;NegotiationSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Negotiation"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;PolicySubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;Policy"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;KeyDistributionSubClass">
+         <owl:onProperty  rdf:resource="&sec;relSecNotation"/>
+         <owl:hasValue  rdf:resource="&sec;KeyDistribution"/>
+    </owl:Restriction>
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Restriction classes that have specific 
+                     reqCredentials 
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <owl:Restriction rdf:about="&sec;LoginSubClass">
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;Login"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;LoginWithPassphraseSubClass"> 
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;LoginWithPassphrase"/>
+      <rdfs:subClassOf  rdf:resource="&sec;LoginSubClass"/> 
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;CertificateSubClass"> 
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;Certificate"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;X509CertificateSubClass"> 
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;X509Certificate"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;KeySubClass"> 
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;Key"/>
+    </owl:Restriction>
+
+    <owl:Restriction rdf:about="&sec;PKeySubClass"> 
+      <owl:onProperty  rdf:resource="&sec;reqCredential"/>
+      <owl:hasValue rdf:resource="&cred;PKey"/>
+      <rdfs:subClassOf  rdf:resource="&sec;KeySubClass"/> 
+    </owl:Restriction>
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: KeyFormat
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <KeyFormat rdf:about="&sec;X.509">  
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;ASN.1SubClass"/>
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+      </owl:intersectionOf>
+    </KeyFormat>
+     
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Encryption
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <Encryption rdf:about="&sec;SMIME-ENC">   
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;ASN.1SubClass"/>
+        <owl:Class rdf:about="&sec;MIMESubClass"/> 
+        <owl:Class rdf:about="&sec;ConfidentialitySubClass"/>
+      </owl:intersectionOf>
+      <documentation rdf:resource="&bibtex-entries;SMIME-Ref"/>
+    </Encryption>
+      
+    <Encryption rdf:about="&sec;OpenPGP-ENC">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;BinarySubClass"/>
+        <owl:Class rdf:about="&sec;Radix-64_ASCII_encodingSubClass"/>
+        <owl:Class rdf:about="&sec;ConfidentialitySubClass"/>
+      </owl:intersectionOf>  
+      <documentation rdf:resource="&bibtex-entries;OpenPGP-Ref"/>
+    </Encryption>
+     
+    <Encryption rdf:about="&sec;XML-ENC">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;XMLSubClass"/>
+        <owl:Class rdf:about="&sec;ConfidentialitySubClass"/> 
+      </owl:intersectionOf>    
+      <documentation rdf:resource="&bibtex-entries;XML-ENC-Ref"/>
+    </Encryption>
+     
+         
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Signature
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <Signature rdf:about="&sec;XML-DSIG">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;XMLSubClass"/>
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+      </owl:intersectionOf>    
+      <documentation rdf:resource="&bibtex-entries;XML-DSIG-Ref"/>
+    </Signature>
+     
+    <Signature rdf:about="&sec;SMIME-SIG">      
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;ASN.1SubClass"/>
+        <owl:Class rdf:about="&sec;MIMESubClass"/> 
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+      </owl:intersectionOf>    
+      <documentation rdf:resource="&bibtex-entries;SMIME-Ref"/>
+    </Signature>
+
+    <Signature rdf:about="&sec;OpenPGP-SIG">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;BinarySubClass"/>
+        <owl:Class rdf:about="&sec;Radix-64_ASCII_encodingSubClass"/> 
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+      </owl:intersectionOf>    
+      <documentation rdf:resource="&bibtex-entries;OpenPGP-Ref"/>
+    </Signature>
+     
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: PolicyLanguage
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+
+    <PolicyLanguage rdf:about="&sec;XACML">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;XMLSubClass"/>
+        <owl:Class rdf:about="&sec;AccessControlSubClass"/> 
+        <owl:Class rdf:about="&sec;PolicySubClass"/> 
+      </owl:intersectionOf>       
+      <documentation rdf:resource="&bibtex-entries;XACML-Ref"/>
+    </PolicyLanguage>
+
+
+    <!--  ############ ########### ############ ############ ########### --> 
+    <!--  
+          Instances: Protocol
+      -->
+    <!--  ############ ########### ############ ############ ########### --> 
+     
+    <Protocol rdf:about="&sec;SAML">      
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;XMLSubClass"/>
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+        <owl:Class rdf:about="&sec;PolicySubClass"/> 
+      </owl:intersectionOf>     
+      <documentation rdf:resource="&bibtex-entries;SAML-Ref"/>
+    </Protocol>
+     
+    <DataTransferProtocol rdf:about="&sec;HTTP">   
+      <documentation rdf:resource="&bibtex-entries;HTTP-Ref"/>
+    </DataTransferProtocol>
+     
+    <DataTransferProtocol rdf:about="&sec;SOAP">   
+      <documentation rdf:resource="&bibtex-entries;SOAP-Ref"/>
+    </DataTransferProtocol>
+
+    <KeyProtocol rdf:about="&sec;Kerberos">    
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;ASN.1SubClass"/>
+        <owl:Class rdf:about="&sec;DERSubClass"/> 
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/> 
+        <owl:Class rdf:about="&sec;KeyDistributionSubClass"/> 
+      </owl:intersectionOf>    
+      <documentation rdf:resource="&bibtex-entries;Kerberos-Ref"/>
+    </KeyProtocol>
+     
+    <KeyProtocol rdf:about="&sec;OpenPGP">    
+      <rdfs:subClassOf  rdf:resource="&sec;KeyDistributionSubClass"/>
+      <documentation rdf:resource="&bibtex-entries;OpenPGP-Ref"/>
+    </KeyProtocol>
+
+    <KeyProtocol rdf:about="&sec;SSH">  
+      <owl:intersectionOf rdf:parseType="Collection">
+        <owl:Class rdf:about="&sec;AuthorizationSubClass"/>
+        <owl:Class rdf:about="&sec;X509CertificateSubClass"/>
+      </owl:intersectionOf> 
+      <documentation rdf:resource="&bibtex-entries;XKMS-Ref"/>
+    </KeyProtocol>
+
+    <KeyProtocol rdf:about="&sec;XKMS">  
+      <owl:intersectionOf rdf:parseType="Collection">
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/>
+        <owl:Class rdf:about="&sec;KeyDistributionSubClass"/>
+        <owl:Class rdf:about="&sec;XMLSubClass"/>
+      </owl:intersectionOf> 
+      <documentation rdf:resource="&bibtex-entries;XKMS-Ref"/>
+    </KeyProtocol>
+     
+    <KeyInformationProt rdf:about="&sec;X-KISS">      
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;AuthenticationSubClass"/>
+        <owl:Class rdf:about="&sec;XMLSubClass"/> 
+      </owl:intersectionOf>     
+      <documentation rdf:resource="&bibtex-entries;XKMS-Ref"/>
+    </KeyInformationProt>
+
+    <KeyRegistrationProt rdf:about="&sec;X-KRSS">      
+      <owl:intersectionOf rdf:parseType="Collection"> 
+        <owl:Class rdf:about="&sec;KeyDistributionSubClass"/>
+        <owl:Class rdf:about="&sec;XMLSubClass"/> 
+      </owl:intersectionOf>       
+      <documentation rdf:resource="&bibtex-entries;XKMS-Ref"/>
+    </KeyRegistrationProt>
+
+     
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#SMIME-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#LoginWithPassphrase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#ComposedCredential"> 
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#Certificate">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#Kerberos-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#OpenPGP-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#Key">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#Login">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#X509Certificate">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.daml.org/services/owl-s/security/credential.owl#PKey">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#SOAP-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#XML-DSIG-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#HTTP-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#XACML-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#SAML-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex.owl#Bibtex_Entry">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#XKMS-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>  
+
+    <rdf:Description rdf:about="http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#XML-ENC-Ref">  
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>  </rdf:Description>
+
+</rdf:RDF>

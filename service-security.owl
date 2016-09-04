@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF[
+  <!ENTITY cc "http://creativecommons.org/ns#" >
+  <!ENTITY dbp "http://dbpedia.org/resource/" >
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+  <!ENTITY dct "http://purl.org/dc/terms/" >
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY profile "http://www.daml.org/services/owl-s/l.1/Profile.owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY security-main "http://purl.org/net/bel-epa/security-main.owl#">
+  <!ENTITY service-security "http://purl.org/net/bel-epa/service-security.owl#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+  <!ENTITY vann "http://purl.org/vocab/vann/" >
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+]>
+
+<rdf:RDF
+  xml:base ="&service-security;"
+  xmlns ="&service-security;"
+  xmlns:cc="&cc;"
+  xmlns:dbp="&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct="&dct;"
+  xmlns:foaf="&foaf;"
+  xmlns:owl ="&owl;"
+  xmlns:profile ="&profile;"
+  xmlns:rdf ="&rdf;"
+  xmlns:rdfs ="&rdfs;"
+  xmlns:security-main ="&security-main;"
+  xmlns:service-security ="&service-security;"
+  xmlns:skos="&skos;"
+  xmlns:vann="&vann;"
+  xmlns:vs="&vs;"
+  xmlns:xsd ="&xsd;"
+>
+
+    <owl:Ontology rdf:about="&service-security;">
+        <vs:term_status>unstable</vs:term_status>
+        <dc:description>An ontology to annotate OWL-S descriptions with security capabilities and security requirements of the resource or service.</dc:description>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Service Security.</skos:prefLabel>
+        <dc:title>Service Security</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="http://melvincarvalho.com/#me"/>
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>service-security</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/service-security.owl#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+   </owl:Ontology>
+
+
+
+    <!-- Class Definitions -->
+
+    <!--
+    Security Concept and Security Objective are made a subclass of
+    ServiceParameter, so that we can define capability and requirement as
+    a subPropertyOf serviceParameter
+    -->
+
+    <owl:Class rdf:about="&security-main;SecurityConcept">
+        <rdfs:subClassOf rdf:resource="&profile;ServiceParameter"/>
+        <skos:prefLabel xml:lang="en">SecurityConcept</skos:prefLabel>
+        <dc:description xml:lang="en">Security concept.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-main;SecurityObjective">
+        <rdfs:subClassOf rdf:resource="&profile;ServiceParameter"/>
+        <skos:prefLabel xml:lang="en">SecurityObjective</skos:prefLabel>
+        <dc:description xml:lang="en">Security objective.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- A ParamValues class that includes both the SecurityConcept class and
+    the SecurityObjective class.
+    This ParamValue class is used to define the range of values the two
+    properties, securityCapability and securityRequirement can possess.
+    -->
+
+    <owl:Class rdf:about="&service-security;ParamValues">
+        <owl:unionOf rdf:parseType="Collection">
+            <owl:Class rdf:about="&security-main;SecurityConcept"/>
+            <owl:Class rdf:about="&security-main;SecurityObjective"/>
+        </owl:unionOf>
+        <skos:prefLabel xml:lang="en">ParamValues</skos:prefLabel>
+        <dc:description xml:lang="en">Parameter values.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+
+    <!-- Properties -->
+
+    <owl:ObjectProperty rdf:about="&service-security;securityCapability">
+        <rdfs:subPropertyOf rdf:resource="&profile;serviceParameter"/>
+        <skos:prefLabel xml:lang="en">securityCapability</skos:prefLabel>
+        <dc:description xml:lang="en">Security capability.</dc:description>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&service-security;securityRequirement">
+        <rdfs:subPropertyOf rdf:resource="&profile;serviceParameter"/>
+        <skos:prefLabel xml:lang="en">securityRequirement</skos:prefLabel>
+        <dc:description xml:lang="en">Security requirement.</dc:description>
+    </owl:ObjectProperty>
+
+    <!-- Property Restrictions -->
+    <!--- These restrictions enable the properties to be either a concept or objective -->
+
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="&service-security;SecurityCapability"/>
+        <owl:allValuesFrom rdf:resource="&service-security;ParamValues"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="&service-security;SecurityRequirement"/>
+        <owl:allValuesFrom rdf:resource="&service-security;ParamValues"/>
+    </owl:Restriction>
+
+</rdf:RDF>

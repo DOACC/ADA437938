@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF[
+  <!ENTITY cc "http://creativecommons.org/ns#">
+  <!ENTITY dbp "http://dbpedia.org/resource/">
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/">
+  <!ENTITY dct "http://purl.org/dc/terms/">
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+  <!ENTITY vann "http://purl.org/vocab/vann/">
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY security-main "http://purl.org/net/bel-epa/security-main.owl#">
+  <!ENTITY agent-security "http://purl.org/net/bel-epa/agent-security.owl#">
+]>
+
+<rdf:RDF
+  xmlns:base = "&agent-security;"
+  xmlns:cc = "&cc;"
+  xmlns:dbp = "&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct = "&dct;"
+  xmlns:foaf = "&foaf;"
+  xmlns:owl = "&owl;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:skos = "&skos;"
+  xmlns:vann ="&vann;"
+  xmlns:vs = "&vs;"
+  xmlns:xsd = "&xsd;"
+  xmlns:security-main = "&security-main;"
+  xmlns:agent-security = "&agent-security;"
+  xmlns = "&agent-security;" 
+>
+
+    <owl:Ontology rdf:about="&agent-security;">
+        <vs:term_status>unstable</vs:term_status>
+        <dc:description>An ontology to enable specification of agent security requirements and capabilities.</dc:description>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Agent Security.</skos:prefLabel>
+        <dc:title>Agent Security</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>agent-security</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/agent-security.owl#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+    </owl:Ontology>
+
+
+    <!-- Class Description -->
+
+    <owl:Class rdf:about="&agent-security;Agent">
+        <skos:prefLabel xml:lang="en">Agent</skos:prefLabel>
+        <dc:description xml:lang="en">Agent with security requirements and capabilities.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+      </owl:Class>
+
+    <!--
+
+    -->
+
+    <owl:Class rdf:about="&agent-security;ParamValues">
+        <owl:unionOf rdf:parseType="Collection">
+            <owl:Class rdf:about="&security-main;SecurityConcept"/>
+            <owl:Class rdf:about="&security-main;SecurityObjective"/>
+        </owl:unionOf>
+        <skos:prefLabel xml:lang="en">ParamValues</skos:prefLabel>
+        <dc:description xml:lang="en">A ParamValues class that includes both the SecurityConcept class and the SecurityObjective class. This class is used to define the range of values the two properties, securityCapability and securityRequirement can possess.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Properties -->
+
+    <owl:ObjectProperty rdf:about="&agent-security;securityCapability">
+        <rdfs:domain rdf:resource="&agent-security;Agent"/>
+        <skos:prefLabel xml:lang="en">securityCapability</skos:prefLabel>
+        <dc:description xml:lang="en">Security Capability</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&agent-security;securityRequirement">
+        <rdfs:domain rdf:resource="&agent-security;Agent"/>
+        <skos:prefLabel xml:lang="en">securityRequirement</skos:prefLabel>
+        <dc:description xml:lang="en">Security Requirement</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/agent-security.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:ObjectProperty>
+
+    <!-- Property Restrictions, enabling the properties to be either a concept or objective -->
+
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="&agent-security;SecurityCapability"/>
+        <owl:allValuesFrom rdf:resource="&agent-security;ParamValues"/>
+    </owl:Restriction>
+
+    <owl:Restriction>
+        <owl:onProperty rdf:resource="&agent-security;SecurityRequirement"/>
+        <owl:allValuesFrom rdf:resource="&agent-security;ParamValues"/>
+    </owl:Restriction>
+
+</rdf:RDF>

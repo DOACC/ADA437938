@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF[
+  <!ENTITY cc "http://creativecommons.org/ns#" >
+  <!ENTITY dbp "http://dbpedia.org/resource/" >
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+  <!ENTITY dct "http://purl.org/dc/terms/" >
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+  <!ENTITY vann "http://purl.org/vocab/vann/" >
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+  <!ENTITY wot "http://xmlns.com/wot/0.1/" >
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY cert "http://www.w3.org/ns/auth/cert#">
+]>
+
+<rdf:RDF
+  xmlns:base = "&cert;"
+  xmlns:cc= "&cc;"
+  xmlns:dbp= "&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct = "&dct;"
+  xmlns:foaf = "&foaf;"
+  xmlns:owl = "&owl;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:skos = "&skos;"
+  xmlns:vann = "&vann;"
+  xmlns:vs = "&vs;"
+  xmlns:wot = "&wot;"
+  xmlns:xsd = "&xsd;"
+  xmlns:cert = "&cert;"
+  xmlns = "&cert;"
+>
+
+    <!-- Class declarations -->
+
+    <owl:Ontology rdf:about="&cert;">
+        <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2008-11-13</dc:created>
+        <dc:description xml:lang="en">
+   Ontology for Certificates and crypto stuff.
+   This is in development. 
+   Some other ontologies to look at:
+     * http://www.w3.org/2000/10/swap/crypto
+        + has cwm builtins: http://www.w3.org/2000/10/swap/doc/Trust
+        - a bit old perhaps. It imports daml+oil
+        - would help to be more completely specified
+        - uses literals as subjects a little liberally, which makes this a 
+        bit difficult to work with frameworks that don't permit this
+     * http://xmlns.com/wot/0.1/
+        - limited very much to PGP (though on can map PGP to X509)
+        - a little coarse grained, mixes up the PGP certificate with the PGP
+          public key
+     *
+   Todo: 
+     - add some classes and relations for DSA
+     - should this all be in one file? Or should this be cut up a little? Say one file for the general CERT ontology, and then files for RSA, DSA, PGP, etc... Or perhaps it does not really matter?
+     - expand more on the certification side of things
+     - verify this by security experts
+     - owl2 has some constructs for combined inverse functional properties. 
+       This may be useful to use in defining an RSA key which is identified
+       by two numbers.
+     - also create html version of the spec by using this as a template.
+     - should comments such as this be in html?
+        </dc:description>
+        <dc:title>Ontology for Certificates and crypto stuff.</dc:title>
+        <seeAlso rdf:resource="http://lists.foaf-project.org/mailman/listinfo/foaf-protocols"/>
+        <seeAlso rdf:resource="http://www.w3.org/ns/auth/X509Uml.svg"/>
+        <seeAlso rdf:resource="http://www.w3.org/ns/auth/rsa"/>
+        <vs:term_status>unstable</vs:term_status>
+        <foaf:maker rdf:resource="http://bblfish.net/people/henry/card#me"/>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Certificate.</skos:prefLabel>
+        <dc:title>Certificate</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>cert</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://www.w3.org/ns/auth/cert#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+    </owl:Ontology>
+
+    <owl:Class rdf:about="&cert;Certificate">
+        <dc:description xml:lang="en">A certificate is a Document that is signed. As explained in http://www.pgpi.org/doc/pgpintro/#p16 - a digital certificate consists of three things: a public key, certificate information  ('Identity' information such as user name, user ID, etc.) and one or more digital signatures.'
+        </dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">Certificate</skos:prefLabel>
+        <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;Key">
+        <dc:description xml:lang="en">the class of keys</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>Key</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;PGPCertificate">
+        <rdfs:subClassOf rdf:resource="&cert;Certificate"/>
+        <!-- <owl:equivalentClass rdf:resource="&wot;PubKey"/> -->
+        <dc:description xml:lang="en">the class of PGP Certificates</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>PGPCertificate</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;PrivateKey">
+        <rdfs:subClassOf rdf:resource="&cert;Key"/>
+        <dc:description xml:lang="en">Private Key</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>PrivateKey</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;PublicKey">
+        <rdfs:subClassOf rdf:resource="&cert;Key"/>
+        <dc:description>Public Key</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>PublicKey</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;RSAKey">
+        <rdfs:subClassOf rdf:resource="&cert;Key"/>
+        <dc:description xml:lang="en">The union of the public and private components of an RSAKey. Usually those pieces are not kept together.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">RSAKey</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;RSAPublicKey">
+        <rdfs:subClassOf rdf:resource="&cert;PublicKey"/>
+        <rdfs:subClassOf rdf:resource="&cert;RSAKey"/>
+        <dc:description xml:lang="en">The RSA public key. Padded message m are encrypted by applying the function modulus(power(m,exponent),modulus)</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">RSAPublicKey</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/RSA"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;RSAPrivateKey">
+        <rdfs:subClassOf rdf:resource="&cert;PrivateKey"/>
+        <rdfs:subClassOf rdf:resource="&cert;RSAKey"/>
+        <dc:description xml:lang="en">The RSA private key.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">RSAPrivateKey</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/RSA"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;DSAKey">
+        <rdfs:subClassOf rdf:resource="&cert;Key"/>
+        <dc:description xml:lang="en">The union of the public and private components of an DSAKey. Usually those pieces are not kept together.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">DSAKey</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;DSAPublicKey">
+        <rdfs:subClassOf rdf:resource="&cert;PublicKey"/>
+        <rdfs:subClassOf rdf:resource="&cert;DSAKey"/>
+        <dc:description xml:lang="en">The DSA public key. Padded message m are encrypted by applying the function modulus(power(m,exponent),modulus)</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">DSAPublicKey</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/DSA"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;DSAPrivateKey">
+        <rdfs:subClassOf rdf:resource="&cert;PrivateKey"/>
+        <rdfs:subClassOf rdf:resource="&cert;DSAKey"/>
+        <dc:description xml:lang="en">The DSA private key.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">DSAPrivateKey</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/DSA"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;Signature">
+        <dc:description xml:lang="en">the class of signatures</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>Signature</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&cert;X509Certificate">
+        <rdfs:subClassOf rdf:resource="&cert;Certificate"/>
+        <dc:description xml:lang="en">the class of X509 Certificates</dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel>X509Certificate</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/X509"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:DatatypeProperty rdf:about="&cert;exponent">
+        <dc:description xml:lang="en">The exponent used to encrypt the message. Number chosen between 1 and the totient(p*q). Often named 'e'.</dc:description>
+        <rdfs:domain rdf:resource="&cert;RSAPublicKey"/>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">exponent</skos:prefLabel>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&cert;hex">
+        <dc:description xml:lang="en">An encoding of a positive integer (from 0 to infinity) as a hexadecimal string that makes it easy to read and/or fun to present on the web.
+
+  The purpose of this way of representing hexadecimals is to enable users to copy and paste hexadecimal notations as shown by most browsers, keychains or tools such as opensso, into their rdf representation of choice.  There are a wide variety of ways in which such strings can be presented. One finds the following:
+
+    e1 dc d5 e1 00 8f 21 5e d5 cc 7c 7e c4 9c ad 86 
+    64 aa dc 29 f2 8d d9 56 7f 31 b6 bd 1b fd b8 ee 
+    51 0d 3c 84 59 a2 45 d2 13 59 2a 14 82 1a 0f 6e 
+    d3 d1 4a 2d a9 4c 7e db 90 07 fc f1 8d a3 8e 38 
+    25 21 0a 32 c1 95 31 3c ba 56 cc 17 45 87 e1 eb 
+    fd 9f 0f 82 16 67 9f 67 fa 91 e4 0d 55 4e 52 c0 
+    66 64 2f fe 98 8f ae f8 96 21 5e ea 38 9e 5c 4f 
+    27 e2 48 ca ca f2 90 23 ad 99 4b cc 38 32 6d bf  
+
+  Or the same as the above, with ':' instead of spaces. We can't guarantee that these are the only ways such tools will present hexadecimals, so we are very lax.
+
+  The letters can be uppercase or lowercase, or mixed.
+
+  Some strings may start with initial 00's, and can be stripped in this notation as they often are. Doing this could, in complement of 2 notation turn a positive number into a negative one, if the first hexadecimal character happens to be one of  the set {'8', '9', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F'} . As we interpret this string as a hexadecimal number leading 00s are not important  (Complement of 2 notation and hexadecimal overlap for positive numbers)
+
+  In order to make this fun, we allow any unicode characters in the string. A parser should:
+  * remove all non hexadecimal characters
+  * treat the resulting as a hexadecimal representation of a number
+
+  This will allow people to make an ascii - better yet a UTF-8 - picture of their public key when publishing it on the web.
+
+  Cert hex is also a datatype property because we used to write it out like this
+
+     [] a rsa:RSAPublicKey;
+       rsa:public_exponent [ cert:hex "e1 dc d5 ..."] 
+
+  The above notation is now deprecated. Now we prefer the literal format below.
+
+     [] a rsa:RSAPublicKey;
+       rsa:public_exponent "e1 dc d5 ..."^^cert:hex .
+        </dc:description>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">hexadecimal</skos:prefLabel>
+        <rdfs:seeAlso rdf:resource="http://en.wikipedia.org/wiki/Hexadecimal"/>
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+        <vs:term_status>archaic</vs:term_status>
+        <skos:editorialNote xml:lang="en">This relation should slowly be transited to just being a datatype. Being a datatype and a property is legal as explained in http://lists.w3.org/Archives/Public/semantic-web/2010Mar/0037.html on the semantic web mailing list in March 2010. But it may be somewhat confusing, especially if it goes against a pattern - still to be set - by the xsd datatypes as the follow up email makes clear.</skos:editorialNote>
+    </owl:DatatypeProperty>
+
+    <owl:ObjectProperty rdf:about="&cert;identity">
+        <dc:description xml:lang="en">the identity of the public key. This is the entity that knows the private key and so can decrypt messages encrypted with the public key, or encrypt messages that can be decrypted with the public key.</dc:description>
+        <rdfs:domain rdf:resource="&cert;PublicKey"/>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">identity</skos:prefLabel>
+        <owl:inverseOf rdf:resource="&cert;key"/>
+        <vs:term_status>archaic</vs:term_status>
+        <skos:editorialNote xml:lang="en">It turns out that this relation is unintuitive to write out and to name. One should instead use cert:key</skos:editorialNote>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&cert;key">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <dc:description xml:lang="en">relates an agent to a key - most often the public key.</dc:description>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">key</skos:prefLabel>
+        <rdfs:range rdf:resource="&cert;Key"/>
+        <rdfs:range rdf:resource="&cert;PublicKey"/>
+        <owl:inverseOf rdf:resource="&cert;identity"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="&cert;modulus">
+        <dc:description xml:lang="en">The modulus of an RSA public and private key. Or the modulus of a DSA Key. The modulus is encoded as a hex binary. The binary is the same as the one encoded in  XML DSIG CryptoBinary (http://www.w3.org/TR/xmldsig-core/#sec-CryptoBinary). This specification defines the ds:CryptoBinary simple type for representing arbitrary-length integers (e.g. "bignums") in XML as octet strings. The integer value is first converted to a "big endian" bitstring. The bitstring is then padded with leading zero bits so that the total number of bits == 0 mod 8 (so that there are an integral number of octets). If the bitstring contains entire leading octets that are zero, these are removed (so the high-order octet is always non-zero). The only difference is that the octet string is then encoded using either xsd:base64Binary or xsd:hexBinary. Currently for all usages of this relation, the xsd:hexBinary datatype should be used until the SPARQL working group specifies specifies in its D-Entailment (http://www.w3.org/TR/sparql11-entailment/#DEntRegime) that those two types are equivalent. It would have been better had there been a hexInteger datatype that was standard and supported by all tools.</dc:description>
+        <rdfs:domain rdf:resource="&cert;DSAKey"/>
+        <rdfs:domain rdf:resource="&cert;RSAKey"/>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">modulus</skos:prefLabel>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#base64Binary"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#hexBinary"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&cert;privateExponent">
+        <dc:description xml:lang="en">The exponent used to decrypt the message calculated as public_exponent*private_exponent = 1 modulo totient(p*q). The private exponent is often named 'd'.</dc:description>
+        <rdfs:domain rdf:resource="&cert;RSAPrivateKey"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+        <rdfs:isDefinedBy rdf:resource="&cert;"/>
+        <skos:prefLabel xml:lang="en">private</skos:prefLabel>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+</rdf:RDF>

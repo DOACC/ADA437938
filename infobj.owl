@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF[
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+  <!ENTITY dct "http://purl.org/dc/terms/" >
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+  <!ENTITY vann "http://purl.org/vocab/vann/" >
+  <!ENTITY cc "http://creativecommons.org/ns#" >
+  <!ENTITY dbp "http://dbpedia.org/resource/" >
+  <!ENTITY profile "http://www.daml.org/services/owl-s/l.1/Profile.owl#">
+  <!ENTITY security-main "http://purl.org/net/bel-epa/security-main.owl#">
+  <!ENTITY security-algorithms "http://purl.org/net/bel-epa/security-algorithms.owl#">
+  <!ENTITY service-security "http://purl.org/net/bel-epa/service-security.owl#">
+  <!ENTITY infobj "http://purl.org/net/bel-epa/infobj.owl#">
+]>
+
+<rdf:RDF
+  xmlns = "&infobj;"
+  xmlns:base = "&infobj;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:owl = "&owl;"
+  xmlns:xsd = "&xsd;"
+  xmlns:dc = "&dc;"
+  xmlns:dct = "&dct;"
+  xmlns:vs = "&vs;"
+  xmlns:skos = "&skos;"
+  xmlns:foaf = "&foaf;"
+  xmlns:vann = "&vann;"
+  xmlns:cc= "&cc;"
+  xmlns:dbp= "&dbp;"
+  xmlns:profile = "&profile;"
+  xmlns:security-main = "&security-main;"
+  xmlns:security-algorithms = "&security-algorithms;"
+  xmlns:service-security = "&service-security;"
+  xmlns:infobj = "&infobj;"
+>
+
+    <owl:Ontology rdf:about="http://purl.org/net/bel-epa/infobj.owl#">
+        <vs:term_status>unstable</vs:term_status>
+        <dc:description>Ontology to describe security requirements for inputs and outputs of services. Security requirements are encrypting, signing of data, etc.</dc:description>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Service Security.</skos:prefLabel>
+        <dc:title>Service Security</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="http://melvincarvalho.com/#me"/>
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>service-security</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/service-security.owl#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+   </owl:Ontology>
+
+
+
+<!-- Class declarations -->
+
+<owl:Class rdf:about="&infobj;InformationObject">
+    <skos:prefLabel xml:lang="en">InformationObject</skos:prefLabel>
+    <dc:description xml:lang="en">Information Object</dc:description>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/infobj.owl#"/>
+    <vs:term_status>unstable</vs:term_status>
+</owl:Class>
+
+<owl:Class rdf:about="&infobj;EncInfObj">
+    <rdfs:subClassOf rdf:resource="&infobj;InformationObject"/>
+    <skos:prefLabel xml:lang="en">EncInfObj</skos:prefLabel>
+    <dc:description xml:lang="en">Information Object describing the encrypting of data.</dc:description>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/infobj.owl#"/>
+    <vs:term_status>unstable</vs:term_status>
+</owl:Class>
+
+<owl:Class rdf:about="&infobj;SigInfObj">
+    <rdfs:subClassOf rdf:resource="&infobj;InformationObject"/>
+    <skos:prefLabel xml:lang="en">SigInfObj</skos:prefLabel>
+    <dc:description xml:lang="en">Information Object describing the signing of data.</dc:description>
+    <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/infobj.owl#"/>
+    <vs:term_status>unstable</vs:term_status>
+</owl:Class>
+
+<!-- PROPERTIES -->
+
+<owl:ObjectProperty rdf:about="&infobj;baseObject">
+    <dc:description>Describes the type or structure of the information that is encoded in InformationObject</dc:description>
+    <skos:prefLabel xml:lang="en">baseObject</skos:prefLabel>
+    <rdfs:range rdf:resource="&xsd;Thing"/>
+    <rdf:type rdf:resource="&xsd;FunctionalProperty"/>
+    <rdfs:domain rdf:resource="&infobj;InformationObject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="&infobj;cryptoAlgUse">
+    <skos:prefLabel xml:lang="en">cryptoAlgUse</skos:prefLabel>
+    <dc:description>Describes the cryptography scheme used in InformationObject.</dc:description>
+    <rdfs:domain rdf:resource="&infobj;InformationObject"/>
+    <rdfs:range rdf:resource="&security-algorithms;Algorithm"/>
+</owl:ObjectProperty>
+
+</rdf:RDF>

@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf[
+  <!ENTITY cc "http://creativecommons.org/ns#">
+  <!ENTITY dbp "http://dbpedia.org/resource/">
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/">
+  <!ENTITY dct "http://purl.org/dc/terms/">
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+  <!ENTITY vann "http://purl.org/vocab/vann/">
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY docs "http://wwww.oasis-open.org/committees/security/docs/#">
+  <!ENTITY repository "http://www.oasis-open.org/committees/xacml/repository/#">
+  <!ENTITY rfc "http://www.ietf.org/rfc/#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+  <!ENTITY SOAP "http://www.w3.org/TR/SOAP/#">
+  <!ENTITY TR "http://www.w3.org/TR/#">
+  <!ENTITY xkms "http://www.w3.org/TR/xkms/#">
+  <!ENTITY bibtex "http://www.csl.sri.com/users/denker/owl-sec/bibtex.owl#">
+  <!ENTITY bibtex-entries "http://www.csl.sri.com/users/denker/owl-sec/bibtex-entries.owl#">
+
+]>
+
+<rdf:RDF
+  xmlns:base = "&bibtex-entries;"
+  xmlns:cc = "&cc;"
+  xmlns:dbp = "&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct = "&dct;"
+  xmlns:foaf = "&foaf;"
+  xmlns:owl = "&owl;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:skos = "&skos;"
+  xmlns:vann = "&vann;"
+  xmlns:vs = "&vs;"
+  xmlns:xsd = "&xsd;"
+  xmlns:docs ="&docs;"
+  xmlns:repository ="&repository;"
+  xmlns:rfc ="&rfc;"
+  xmlns:SOAP ="&SOAP;"
+  xmlns:TR ="&TR;"
+  xmlns:xkms ="&xkms;"
+  xmlns:bibtex ="&bibtex;"
+  xmlns:bibtex-entries  = "&bibtex-entries;"
+  xmlns = "&bibtex-entries;"
+>
+
+<owl:Ontology>
+  <owl:versionInfo rdf:datatype="&xsd;string"> bibtex-entries.owl, 2003/10/01</owl:versionInfo>
+  <rdfs:comment>Bibliographical References to security related literature.</rdfs:comment>
+  <vs:term_status>unstable</vs:term_status>
+  <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+  <skos:prefLabel xml:lang="en">Bibtex.</skos:prefLabel>
+  <dc:title>Bibliographical References to security related literature.</dc:title>
+  <dct:created>2016-09-02</dct:created>
+  <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+  <cc:license rdf:resource="&cc;"/>
+  <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+  <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+  <owl:versionInfo rdf:datatype="&xsd;decimal">0.1</owl:versionInfo>
+  <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+  <vann:preferredNamespacePrefix>bibtex-entries</vann:preferredNamespacePrefix>
+  <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/bibtex-entries.owl#</vann:preferredNamespaceUri>
+</owl:Ontology>
+
+
+
+<!--  ############ ########### ############ ############ ########### --> 
+<!--  
+      Instances: Bibliographical References
+ -->
+<!--  ############ ########### ############ ############ ########### --> 
+
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;Kerberos-Ref"> 
+  <hasPublication_Type>
+    <Misc>
+      <hasHowPublished>
+        RFC 1510, September 1993
+      </hasHowPublished>
+      <hasTitle>
+        The Kerberos Network Authentication Service (VC)
+      </hasTitle>
+      <hasAuthor>Kohl, J.</hasAuthor>
+      <hasAuthor>Neuman, B.</hasAuthor>
+      <hasNote>&rfc;rfc1510.txt</hasNote>
+    </Misc>
+  </hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;HTTP-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>
+        RFC 2616, June 1999 
+      </bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        Hypertext Transfer Protocol -- HTTP/1.1
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Berners-Lee, T.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Fielding, R.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Gettys, J.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Leach, P.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Masinter, L.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Mogul, J.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Nielsen, H.</bibtex:hasAuthor>
+      <bibtex:hasNote>&rfc;rfc2616.txt</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;SOAP-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>W3C Note, May 2000</bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        Simple Object Access Protocol (SOAP) 1.1
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Box, D.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Ehnebuske, D.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Kakivaya, G.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Layman, A.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Mendelsohn, N.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Nielsen, H. F.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Thatte, S.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Winer, D.</bibtex:hasAuthor>
+      <bibtex:hasNote>&SOAP;</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;XML-DSIG-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>RFC 3275, March 2002</bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        (Extensible Markup Language) XML-Signature Syntax and Processing
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Eastlake, D.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Reagle, J.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Solo, D.</bibtex:hasAuthor>
+      <bibtex:hasNote>&rfc;rfc3275.txt</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;SAML-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>
+        Oasis Standard, November 2002
+      </bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        Security Assertion Markup Language (SAML)
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Hallam-Baker, P.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Maler, E.</bibtex:hasAuthor>
+      <bibtex:hasNote>&docs;oasis-sstc-saml-core-1.0.pdf</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;XACML-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>
+        OASIS Standard, February 2003
+      </bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        eXtensible Access Control Markup Language (XACML) Version 1.0
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Godik, S.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Moses, T.</bibtex:hasAuthor>
+      <bibtex:hasNote>&repository;oasis-xacml-1.0.pdf</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;XML-ENC-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>
+        W3C Recommendation, December 2002
+      </bibtex:hasHowPublished>
+      <bibtex:hasTitle>XML Encryption Syntax and Processing</bibtex:hasTitle>
+      <bibtex:hasAuthor>Eastlake, D.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Reagle, J.</bibtex:hasAuthor>
+      <bibtex:hasNote>&TR;xmlenc-core</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;XKMS-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>W3C Note, March 2001</bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        XML Key Management Specification (XKMS)
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor>Dillaway, B.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Epstein, J.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Ford, W.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Fox, B.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Hallam-Baker, P.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>LaMacchia, B.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Lapp, J.</bibtex:hasAuthor>
+      <bibtex:hasNote>&xkms;</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;SMIME-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>RFC 2633, June  1999</bibtex:hasHowPublished>
+      <bibtex:hasTitle>
+        S/MIME Version 3 Message Specification
+      </bibtex:hasTitle>
+      <bibtex:hasAuthor></bibtex:hasAuthor>
+      <bibtex:hasAuthor></bibtex:hasAuthor>
+      <bibtex:hasAuthor></bibtex:hasAuthor>
+      <bibtex:hasNote>&rfc;rfc2633.txt</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+<bibtex:Bibtex_Entry rdf:about="&bibtex-entries;OpenPGP-Ref"> 
+  <bibtex:hasPublication_Type>
+    <bibtex:Misc>
+      <bibtex:hasHowPublished>
+        RFC 2440, November 1998
+      </bibtex:hasHowPublished>
+      <bibtex:hasTitle>OpenPGP Message Format</bibtex:hasTitle>
+      <bibtex:hasAuthor>Callas, J.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Donnerhacke, L.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Finney, H.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Thayer, R.</bibtex:hasAuthor>
+      <bibtex:hasAuthor>Ramsdell, B.</bibtex:hasAuthor>
+      <bibtex:hasNote>&rfc;rfc2440.txt</bibtex:hasNote>
+    </bibtex:Misc>
+  </bibtex:hasPublication_Type>
+</bibtex:Bibtex_Entry>
+
+</rdf:RDF>

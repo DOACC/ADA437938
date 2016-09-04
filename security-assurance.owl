@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cc "http://creativecommons.org/ns#" >
+    <!ENTITY dbp "http://dbpedia.org/resource/" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY dsig "http://www.w3.org/2000/09/xmldsig#">
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+    <!ENTITY profile "http://www.daml.org/services/owl-s/l.1/Profile.owl#">
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY vann "http://purl.org/vocab/vann/" >
+    <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+    <!ENTITY security-assurance "http://purl.org/net/bel-epa/security-assurance.owl#">
+]>
+
+<rdf:RDF
+    xml:base ="&security-assurance;"
+    xmlns:cc="&cc;"
+    xmlns:dbp="&dbp;"
+    xmlns:dc = "&dc;"
+    xmlns:dct="&dct;"
+    xmlns:foaf="&foaf;"
+    xmlns:owl ="&owl;"
+    xmlns:profile ="&profile;"
+    xmlns:rdf ="&rdf;"
+    xmlns:rdfs ="&rdfs;"
+    xmlns:skos="&skos;"
+    xmlns:vann="&vann;"
+    xmlns:vs="&vs;"
+    xmlns:xsd ="&xsd;"
+    xmlns:security-assurance ="&security-assurance;"
+    xmlns ="&security-assurance;"
+>
+
+    <owl:Ontology rdf:about="&security-assurance;">
+        <vs:term_status>unstable</vs:term_status>
+        <dc:description>A security ontology to annotate resources with security-related assurance information..</dc:description>
+        <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+        <skos:prefLabel xml:lang="en">Security Assurance.</skos:prefLabel>
+        <dc:title>Security Assurance</dc:title>
+        <dct:created>2016-09-02</dct:created>
+        <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+        <foaf:maker rdf:resource="http://melvincarvalho.com/#me"/>
+        <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:versionInfo>
+        <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+        <vann:preferredNamespacePrefix>security-assurance</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/security-assurance.owl#</vann:preferredNamespaceUri>
+        <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+        <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+   </owl:Ontology>
+
+
+
+    <!-- Class Definitions -->
+
+    <!--
+    Security Concept and Security Objective are made a subclass of
+    ServiceParameter, so that we can define capability and requirement as
+    a subPropertyOf serviceParameter
+    -->
+
+    <!-- Top Class; Assurance -->
+
+    <owl:Class rdf:about="&security-assurance;Assurance">
+        <rdfs:subClassOf rdf:resource="&profile;ServiceParameter"/>
+        <skos:prefLabel xml:lang="en">Assurance</skos:prefLabel>
+        <dc:description xml:lang="en">Security assurance.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclasses of Assurance: Standard, Accreditation, Evaluation, Certification -->
+
+    <owl:Class rdf:about="&security-assurance;Standard">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Assurance" />
+        <skos:prefLabel xml:lang="en">Standard</skos:prefLabel>
+        <dc:description xml:lang="en">Standard.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;Accreditation">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Assurance" />
+        <skos:prefLabel xml:lang="en">Accreditation</skos:prefLabel>
+        <dc:description xml:lang="en">Accreditation.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;Evaluation">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Assurance"/>
+        <skos:prefLabel xml:lang="en">Evaluation</skos:prefLabel>
+        <dc:description xml:lang="en">Evaluation.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;Certification">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Assurance"/>
+        <skos:prefLabel xml:lang="en">Certification</skos:prefLabel>
+        <dc:description xml:lang="en">Certification.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclass of Standard class: FIPS, NSA -->
+
+    <owl:Class rdf:about="&security-assurance;FIPS">
+      <rdfs:subClassOf rdf:resource="&security-assurance;Standard"/>
+        <skos:prefLabel xml:lang="en">FIPS</skos:prefLabel>
+        <dc:description xml:lang="en">FIPS.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;NSA">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Standard"/>
+        <skos:prefLabel xml:lang="en">NSA</skos:prefLabel>
+        <dc:description xml:lang="en">NSA.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclass of Evaluation class: TCSEC and CommonCriteria -->
+
+    <owl:Class rdf:about="&security-assurance;TCSEC">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Evaluation"/>
+        <skos:prefLabel xml:lang="en">TCSEC</skos:prefLabel>
+        <dc:description xml:lang="en">Orange Book</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;CommonCriteria">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Evaluation"/>
+        <skos:prefLabel xml:lang="en">CommonCriteria</skos:prefLabel>
+        <dc:description xml:lang="en">Common criteria.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclass of Certification class: DITSCAP class -->
+
+    <owl:Class rdf:about="&security-assurance;DITSCAP">
+        <rdfs:subClassOf rdf:resource="&security-assurance;Certification"/>
+        <skos:prefLabel xml:lang="en">DITSCAP</skos:prefLabel>
+        <dc:description xml:lang="en">DITSCAP.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <!-- Subclass of TCSEC class; DivisionA, DivisionB, DivisionC, and DivisionD -->
+
+    <owl:Class rdf:about="&security-assurance;DivisionA">
+        <rdfs:subClassOf rdf:resource="&security-assurance;TCSEC"/>
+        <skos:prefLabel xml:lang="en">DivisionA</skos:prefLabel>
+        <dc:description xml:lang="en">Division A.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;DivisionB">
+        <rdfs:subClassOf rdf:resource="&security-assurance;TCSEC"/>
+        <skos:prefLabel xml:lang="en">DivisionB</skos:prefLabel>
+        <dc:description xml:lang="en">Division B.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;DivisionC">
+        <rdfs:subClassOf rdf:resource="&security-assurance;TCSEC"/>
+        <skos:prefLabel xml:lang="en">DivisionC</skos:prefLabel>
+        <dc:description xml:lang="en">Division C.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+    <owl:Class rdf:about="&security-assurance;DivisionD">
+        <rdfs:subClassOf rdf:resource="&security-assurance;TCSEC"/>
+        <skos:prefLabel xml:lang="en">DivisionD</skos:prefLabel>
+        <dc:description xml:lang="en">Division D.</dc:description>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:Class>
+
+
+    <!-- Property Declarations -->
+
+    <owl:DatatypeProperty rdf:about="&security-assurance;byOrganization">
+        <rdfs:domain rdf:resource="&security-assurance;Assurance"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <dc:description>Specifies which organization is responsible</dc:description>
+        <skos:prefLabel xml:lang="en">byOrganization</skos:prefLabel>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/net/bel-epa/security-assurance.owl#"/>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+
+    <!-- Instance declarations -->
+
+    <!-- FIPS instances -->
+
+    <FIPS rdf:about="&security-assurance;FIPS140-2"/>
+    <FIPS rdf:about="&security-assurance;FIPS180-2"/>
+    <FIPS rdf:about="&security-assurance;FIPS46-3"/>
+
+    <!-- NSA instances -->
+
+    <NSA rdf:about="&security-assurance;Type1"/>
+    <NSA rdf:about="&security-assurance;Type2"/>
+    <NSA rdf:about="&security-assurance;Type3"/>
+    <NSA rdf:about="&security-assurance;Type4"/>
+
+    <!-- Division instances -->
+
+    <DivisionA rdf:about="&security-assurance;A1"/>
+    <DivisionB rdf:about="&security-assurance;B1"/>
+    <DivisionB rdf:about="&security-assurance;B2"/>
+    <DivisionB rdf:about="&security-assurance;B3"/>
+    <DivisionC rdf:about="&security-assurance;C1"/>
+    <DivisionC rdf:about="&security-assurance;C2"/>
+
+    <!-- CommonCriteria instances -->
+
+    <CommonCriteria rdf:about="&security-assurance;EAL1"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL2"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL3"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL4"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL5"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL6"/>
+    <CommonCriteria rdf:about="&security-assurance;EAL7"/>
+
+</rdf:RDF>
+

@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf [
+
+  <!ENTITY cc "http://creativecommons.org/ns#">
+  <!ENTITY dbp "http://dbpedia.org/resource/">
+  <!ENTITY dc "http://purl.org/dc/elements/1.1/">
+  <!ENTITY dct "http://purl.org/dc/terms/">
+  <!ENTITY foaf "http://xmlns.com/foaf/0.1/">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY skos "http://www.w3.org/2004/02/skos/core#">
+  <!ENTITY vann "http://purl.org/vocab/vann/">
+  <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY bibtex "http://www.csl.sri.com/users/denker/owl-sec/bibtex.owl#">
+  ]>
+
+<rdf:RDF
+  xmlns:base = "&bibtex;"
+  xmlns:cc = "&cc;"
+  xmlns:dbp = "&dbp;"
+  xmlns:dc = "&dc;"
+  xmlns:dct = "&dct;"
+  xmlns:foaf = "&foaf;"
+  xmlns:owl = "&owl;"
+  xmlns:rdf = "&rdf;"
+  xmlns:rdfs = "&rdfs;"
+  xmlns:skos = "&skos;"
+  xmlns:vann = "&vann;"
+  xmlns:vs = "&vs;"
+  xmlns:xsd = "&xsd;"
+  xmlns:bibtex = "&bibtex;"
+  xmlns = "&bibtex;"
+>
+
+<owl:Ontology rdf:about="&bibtex;">
+  <owl:versionInfo rdf:datatype="&xsd;string">$Id: bibtex.owl, 2003/10/05, grit denker$</owl:versionInfo>
+  <dc:description>(Partial) copy of Terry Paynes bibliography ontology (w/o CMU-specific stuff)
+    Source see http://www.daml.ri.cmu.edu/ont/homework/cmu-ri-publications-ont.daml
+    Translated to OWL:
+       - changed use of "disjointUnionOf"
+       - Namepaces changed
+       - &xsd;string instead of &rdfs;Literal
+  </dc:description>
+  <vs:term_status>unstable</vs:term_status>
+  <rdfs:comment>Adapted for use with Protege</rdfs:comment>
+  <skos:prefLabel xml:lang="en">Bibtex.</skos:prefLabel>
+  <dc:title>Bibtex</dc:title>
+  <dct:created>2016-09-02</dct:created>
+  <dc:rights>Copyright © 2016 Graham Higgins</dc:rights>
+  <cc:license rdf:resource="&cc;"/>
+  <dc:publisher><foaf:Organization rdf:about="https://bel-epa.com/about"/></dc:publisher> 
+  <foaf:maker rdf:resource="https://bel-epa.com/users/~gjh/foaf.rdf#me"/>
+  <owl:versionInfo rdf:datatype="&xsd;decimal">0.1</owl:versionInfo>
+  <rdfs:comment xml:lang="en">-Version 0.1: initial draft</rdfs:comment>
+  <vann:preferredNamespacePrefix>bibtex</vann:preferredNamespacePrefix>
+  <vann:preferredNamespaceUri>http://purl.org/net/bel-epa/bibtex.owl#</vann:preferredNamespaceUri>
+  <!-- owl:versionIRI rdf:resource="http://purl.org/net/bel-epa/crypto/0.1"/ -->
+  <!-- <owl:imports rdf:resource="http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf"/> -->
+
+</owl:Ontology>
+
+
+<!-- ############ ########### ############ ############ ########### -->
+<!-- CLASS: Bibtex_Entry -->
+<!-- Based on Leslie Lamport's 'LATEX - A Document Preparation System'. -->
+
+<owl:Class rdf:about="&bibtex;Bibtex_Entry">
+  <skos:prefLabel>Bibtex_Entry</skos:prefLabel>
+  <dc:description>An entry for a bibtex database.</dc:description>
+</owl:Class>
+
+<rdf:ObjectProperty rdf:about="&bibtex;hasPublication_Type">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Entry"/>
+   <rdfs:range rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+</rdf:ObjectProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasCiteKey">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Entry"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasAddress">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasAnnote">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasAuthor">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasBooktitle">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasChapter">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasCrossref">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasEdition">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasEditor">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasHowPublished">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasInstitution">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasJournal">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasKey">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasMonth">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasNote">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasNumber">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasOrganization">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasPages">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasPublisher">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasSchool">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasSeries">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasTitle">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasType">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasVolume">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<rdf:DatatypeProperty rdf:about="&bibtex;hasYear">
+   <rdfs:domain rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+   <rdfs:range rdf:resource="&xsd;string"/>
+</rdf:DatatypeProperty>
+
+<!-- ############ ########### ############ ############ ########### -->
+<!-- CLASS: Bibtex_Publication_Type -->
+<!-- Based on Leslie Lamport's 'LATEX - A Document Preparation System'. -->
+
+<owl:Class rdf:about="&bibtex;Bibtex_Publication_Type">
+  <skos:prefLabel>Bibtex_Publication_Type</skos:prefLabel>
+  <dc:description>A publication type supported by the bibtex format.</dc:description>
+  <owl:unionOf rdf:parseType="Collection">
+    <owl:Class rdf:about="&bibtex;Article"/>
+    <owl:Class rdf:about="&bibtex;Book"/>
+    <owl:Class rdf:about="&bibtex;Booklet"/>
+    <owl:Class rdf:about="&bibtex;Conference"/>
+    <owl:Class rdf:about="&bibtex;InBook"/>
+    <owl:Class rdf:about="&bibtex;InConference"/>
+    <owl:Class rdf:about="&bibtex;InProceedings"/>
+    <owl:Class rdf:about="&bibtex;Manual"/>
+    <owl:Class rdf:about="&bibtex;MastersThesis"/>
+    <owl:Class rdf:about="&bibtex;Misc"/>
+    <owl:Class rdf:about="&bibtex;PhdThesis"/>
+    <owl:Class rdf:about="&bibtex;Proceedings"/>
+    <owl:Class rdf:about="&bibtex;TechReport"/>
+    <owl:Class rdf:about="&bibtex;Unpublished"/>
+  </owl:unionOf>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Article">
+  <skos:prefLabel>Article</skos:prefLabel>
+  <dc:description>An article from a journal or magazine.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Book">
+  <skos:prefLabel>Book</skos:prefLabel>
+  <dc:description>A book with an explicit publisher.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Booklet">
+  <skos:prefLabel>Booklet</skos:prefLabel>
+  <dc:description>A work that is printed and bound, but without a named
+    publisher or sponsoring institution.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Conference">
+  <skos:prefLabel>Conference</skos:prefLabel>
+  <owl:equivalentClass rdf:resource="&bibtex;InProceedings"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;InBook">
+  <skos:prefLabel>InBook</skos:prefLabel>
+  <dc:description>Part of a book, usually untitled.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;InCollection">
+  <skos:prefLabel>InCollection</skos:prefLabel>
+  <dc:description>A part of a book with its own title.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;InProceedings">
+  <skos:prefLabel>InProceedings</skos:prefLabel>
+  <dc:description>An article in a conference proceedings.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Manual">
+  <skos:prefLabel>Manual</skos:prefLabel>
+  <dc:description>Technical Documentation.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;MasterThesis">
+  <skos:prefLabel>MastersThesis</skos:prefLabel>
+  <dc:description>A Masters Thesis.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Misc">
+  <skos:prefLabel>Misc</skos:prefLabel>
+  <dc:description>A catchall type of publication - use when nothing else fits.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+  <owl:disjointWith rdf:resource="&bibtex;MasterThesis"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;PhdThesis">
+  <skos:prefLabel>PhdThesis</skos:prefLabel>
+  <dc:description>A Phd Thesis.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+  <owl:disjointWith rdf:resource="&bibtex;MasterThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Misc"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;Proceedings">
+  <skos:prefLabel>Proceedings</skos:prefLabel>
+  <dc:description>A conference proceedings.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+  <owl:disjointWith rdf:resource="&bibtex;MasterThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Misc"/>
+  <owl:disjointWith rdf:resource="&bibtex;PhdThesis"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;TechReport">
+  <skos:prefLabel>TechReport</skos:prefLabel>
+  <dc:description>A report published by a school or other institution.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+  <owl:disjointWith rdf:resource="&bibtex;MasterThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Misc"/>
+  <owl:disjointWith rdf:resource="&bibtex;PhdThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Proceedings"/>
+</owl:Class>
+
+<owl:Class rdf:about="&bibtex;unpublished">
+  <skos:prefLabel>unpublished</skos:prefLabel>
+  <dc:description>An article with an author and title, but not formally published.</dc:description>
+  <rdfs:subClassOf rdf:resource="&bibtex;Bibtex_Publication_Type"/>
+  <owl:disjointWith rdf:resource="&bibtex;Article"/>
+  <owl:disjointWith rdf:resource="&bibtex;Book"/>
+  <owl:disjointWith rdf:resource="&bibtex;Booklet"/>
+  <owl:disjointWith rdf:resource="&bibtex;InBook"/>
+  <owl:disjointWith rdf:resource="&bibtex;InCollection"/>
+  <owl:disjointWith rdf:resource="&bibtex;InProceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;Manual"/>
+  <owl:disjointWith rdf:resource="&bibtex;MasterThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Misc"/>
+  <owl:disjointWith rdf:resource="&bibtex;PhdThesis"/>
+  <owl:disjointWith rdf:resource="&bibtex;Proceedings"/>
+  <owl:disjointWith rdf:resource="&bibtex;TechReport"/>
+</owl:Class>
+
+</rdf:RDF>
